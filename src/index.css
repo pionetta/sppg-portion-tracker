@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #F5F5F5;
+    --surface: #FFFFFF;
+    --text-primary: #111111;
+    --text-secondary: #666666;
+    --text-muted: #8A8A8A;
+    --border-subtle: #E5E5E5;
+    --accent-primary: #6366F1;
+    --accent-hover: #4F46E5;
+    --status-success: #22C55E;
+    --status-warning: #F59E0B;
+    --status-danger: #EF4444;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+    touch-action: manipulation;
+  }
+
+  input, textarea, select {
+    user-select: auto;
+  }
+}
+
+/* Minimal Claymorphism Utilities per DESIGN.md Section 3 */
+.clay-card {
+  background-color: #FFFFFF;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  border: 1px solid #E5E5E5;
+}
+
+.clay-card-flat {
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  border: 1px solid #E5E5E5;
+}
+
+.clay-card-interactive {
+  background-color: #FFFFFF;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  border: 1px solid #E5E5E5;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.clay-card-interactive:active {
+  transform: scale(0.985);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.clay-button {
+  border-radius: 1rem;
+  font-weight: 600;
+  transition: all 0.15s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.clay-button:active {
+  transform: scale(0.97);
+}
+
+.clay-button-primary {
+  background-color: #6366F1;
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px -2px rgba(99, 102, 241, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.clay-button-primary:hover {
+  background-color: #4F46E5;
+}
+
+.clay-button-secondary {
+  background-color: #FFFFFF;
+  color: #111111;
+  border: 1px solid #E5E5E5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.clay-button-secondary:hover {
+  background-color: #FAFAFA;
+}
+
+.clay-button-success {
+  background-color: #22C55E;
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px -2px rgba(34, 197, 94, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.clay-button-danger {
+  background-color: #EF4444;
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px -2px rgba(239, 68, 68, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.clay-input {
+  background-color: #FAFAFA;
+  border: 1.5px solid #E5E5E5;
+  border-radius: 0.875rem;
+  color: #111111;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s ease;
+}
+
+.clay-input:focus {
+  outline: none;
+  border-color: #6366F1;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4D4D4;
+  border-radius: 9999px;
+}
+
+/* Safe Area for iOS / Mobile devices */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 1.25rem);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 1rem);
+}
+
+/* Print CSS */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-break-inside-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .clay-card, .clay-card-flat {
+    box-shadow: none !important;
+    border: 1px solid #CCC !important;
+  }
+}
