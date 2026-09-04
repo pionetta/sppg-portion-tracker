@@ -241,7 +241,7 @@ export const PortioningView: React.FC<PortioningViewProps> = ({ currentDate }) =
       ) : null}
 
       {/* Sticky Mobile Summary Bar with Single Target Editor per DESIGN.md Section 8 */}
-      <ClayCard className="sticky top-14 z-30 bg-[#FFFFFF] border-[#E5E5E5] shadow-xs p-4">
+      <ClayCard variant="prominent" className="sticky top-14 z-30 p-4 sm:p-5">
         <div className="flex items-center justify-between gap-2 mb-2">
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
@@ -265,7 +265,7 @@ export const PortioningView: React.FC<PortioningViewProps> = ({ currentDate }) =
                   inputMode="numeric"
                   value={targetInput}
                   onChange={(e) => setTargetInput(e.target.value)}
-                  className="w-18 px-2 py-1 text-xs font-bold bg-neutral-50 border border-indigo-500 rounded-lg focus:outline-none"
+                  className="w-18 px-2 py-1 text-xs font-bold bg-white border border-indigo-500 rounded-lg focus:outline-none"
                   autoFocus
                 />
                 <button
@@ -286,7 +286,7 @@ export const PortioningView: React.FC<PortioningViewProps> = ({ currentDate }) =
               <button
                 onClick={handleStartEditTarget}
                 disabled={isLocked}
-                className="flex items-center gap-1 text-xs font-black text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-xl hover:bg-indigo-100 disabled:opacity-50 cursor-pointer"
+                className="flex items-center gap-1 text-xs font-black text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-xl hover:bg-indigo-100 disabled:opacity-50 cursor-pointer border border-indigo-200/80 shadow-[0_1px_2px_rgba(99,102,241,0.08)]"
                 title="Klik untuk mengubah target harian"
               >
                 <span>Target: {dailyData.target_portions} porsi</span>
@@ -296,28 +296,28 @@ export const PortioningView: React.FC<PortioningViewProps> = ({ currentDate }) =
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-2 text-center bg-neutral-50 p-2.5 rounded-xl">
+        <div className="grid grid-cols-4 gap-2 text-center clay-well p-2.5 sm:p-3 rounded-2xl">
           <div>
             <div className="text-[10px] text-neutral-500 font-semibold">Target</div>
-            <div className="text-sm sm:text-base font-black text-neutral-800">
+            <div className="text-sm sm:text-base font-black text-[#111111] tabular-nums">
               {dailyData.target_portions}
             </div>
           </div>
           <div>
             <div className="text-[10px] text-neutral-500 font-semibold">Selesai</div>
-            <div className="text-sm sm:text-base font-black text-indigo-600">
+            <div className="text-sm sm:text-base font-black text-indigo-600 tabular-nums">
               {dailyData.completed_menus_count} / {dailyData.total_menus_count}
             </div>
           </div>
           <div>
             <div className="text-[10px] text-neutral-500 font-semibold">Sekolah</div>
-            <div className="text-sm sm:text-base font-black text-neutral-700">
+            <div className="text-sm sm:text-base font-black text-neutral-700 tabular-nums">
               {dailyData.schools.length}
             </div>
           </div>
           <div>
             <div className="text-[10px] text-neutral-500 font-semibold">Progress</div>
-            <div className="text-sm sm:text-base font-black text-emerald-600">
+            <div className="text-sm sm:text-base font-black text-emerald-600 tabular-nums">
               {dailyData.progress_percentage}%
             </div>
           </div>

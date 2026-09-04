@@ -2,12 +2,12 @@
 
 @layer base {
   :root {
-    --bg-main: #F5F5F5;
+    --bg-main: #F5F6F9;
     --surface: #FFFFFF;
     --text-primary: #111111;
     --text-secondary: #666666;
     --text-muted: #8A8A8A;
-    --border-subtle: #E5E5E5;
+    --border-subtle: #E2E4EB;
     --accent-primary: #6366F1;
     --accent-hover: #4F46E5;
     --status-success: #22C55E;
@@ -18,11 +18,17 @@
   body {
     background-color: var(--bg-main);
     color: var(--text-primary);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     user-select: none;
     touch-action: manipulation;
+  }
+
+  /* OpenType Tabular Figures for clean, non-jumping numbers in kitchen logging */
+  .tabular-metric, .tabular-nums {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
   }
 
   input, textarea, select {
@@ -30,43 +36,121 @@
   }
 }
 
-/* Minimal Claymorphism Utilities per DESIGN.md Section 3 */
+/* ==========================================================================
+   PRONOUNCED CLAYMORPHISM SYSTEM (Minimal Clay Operational)
+   Combining diffuse ambient drop shadows with crisp, bright top highlights
+   and soft bottom inner cushion shadows for genuine tactile 3D physical depth.
+   ========================================================================== */
+
+/* Level 1 Raised Clay Card: Standard containers, menu blocks, school cards */
 .clay-card {
   background-color: #FFFFFF;
   border-radius: 1.25rem;
-  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02), inset 0 1px 1px rgba(255, 255, 255, 0.9);
-  border: 1px solid #E5E5E5;
+  border: 1px solid rgba(226, 232, 240, 0.88);
+  box-shadow: 
+    0 8px 24px -4px rgba(15, 23, 42, 0.08),
+    0 3px 8px -2px rgba(15, 23, 42, 0.04),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 1),
+    inset 0 -3px 6px 0 rgba(15, 23, 42, 0.035);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.clay-card-flat {
+/* Level 2 Prominent Floating Clay: Sticky bars, hero summaries, active dialogs */
+.clay-card-prominent {
   background-color: #FFFFFF;
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-  border: 1px solid #E5E5E5;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 
+    0 14px 34px -5px rgba(15, 23, 42, 0.12),
+    0 6px 14px -3px rgba(15, 23, 42, 0.06),
+    inset 0 2.5px 4px 0 rgba(255, 255, 255, 1),
+    inset 0 -4px 8px 0 rgba(15, 23, 42, 0.045);
 }
 
+/* Interactive Clay Card (tappable cards, list items) */
 .clay-card-interactive {
   background-color: #FFFFFF;
   border-radius: 1.25rem;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.9);
-  border: 1px solid #E5E5E5;
+  border: 1px solid rgba(226, 232, 240, 0.88);
+  box-shadow: 
+    0 8px 22px -4px rgba(15, 23, 42, 0.08),
+    0 2px 6px -1px rgba(15, 23, 42, 0.04),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 1),
+    inset 0 -3px 5px 0 rgba(15, 23, 42, 0.035);
   transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.clay-card-interactive:hover {
+  box-shadow: 
+    0 12px 28px -5px rgba(15, 23, 42, 0.1),
+    0 4px 10px -2px rgba(15, 23, 42, 0.05),
+    inset 0 2.5px 3px 0 rgba(255, 255, 255, 1),
+    inset 0 -3px 6px 0 rgba(15, 23, 42, 0.04);
+  transform: translateY(-1px);
 }
 
 .clay-card-interactive:active {
   transform: scale(0.985);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  box-shadow: 
+    0 2px 8px rgba(15, 23, 42, 0.06),
+    inset 0 2px 4px rgba(15, 23, 42, 0.05);
 }
 
+/* Subtle / Flat Clay Card (sub-sections, compact cards) */
+.clay-card-flat {
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 
+    0 4px 12px -2px rgba(15, 23, 42, 0.05),
+    inset 0 1.5px 2px rgba(255, 255, 255, 1),
+    inset 0 -2px 4px rgba(15, 23, 42, 0.025);
+}
+
+/* Sunken / Inset Clay Wells: for metrics, summary grids, and numeric entry */
+.clay-well, .clay-card-inset {
+  background-color: #F1F3F8;
+  border-radius: 1rem;
+  border: 1px solid #E1E4EB;
+  box-shadow: 
+    inset 0 3px 6px 0 rgba(15, 23, 42, 0.07),
+    inset 0 1px 2px 0 rgba(15, 23, 42, 0.04),
+    inset 0 -1px 2px 0 rgba(255, 255, 255, 0.85);
+}
+
+/* Clay Inputs: Pillowy sunken wells that pop bright on focus */
+.clay-input {
+  background-color: #F3F4F9;
+  border: 1.5px solid #E1E4EB;
+  border-radius: 0.875rem;
+  color: #111111;
+  box-shadow: 
+    inset 0 3px 6px 0 rgba(15, 23, 42, 0.06),
+    inset 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.clay-input:focus {
+  outline: none;
+  border-color: #6366F1;
+  background-color: #FFFFFF;
+  box-shadow: 
+    0 0 0 3.5px rgba(99, 102, 241, 0.22),
+    inset 0 1px 2px rgba(255, 255, 255, 1);
+}
+
+/* Clay Buttons: Squishy, tactile feedback on press */
 .clay-button {
   border-radius: 1rem;
   font-weight: 600;
-  transition: all 0.15s ease-in-out;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   cursor: pointer;
+  user-select: none;
 }
 
 .clay-button:active {
@@ -74,52 +158,112 @@
 }
 
 .clay-button-primary {
-  background-color: #6366F1;
+  background: linear-gradient(180deg, #6366F1 0%, #4F46E5 100%);
   color: #FFFFFF;
-  box-shadow: 0 6px 16px -2px rgba(99, 102, 241, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  border: 1px solid #4338CA;
+  box-shadow: 
+    0 8px 22px -3px rgba(79, 70, 229, 0.46),
+    0 3px 8px -1px rgba(79, 70, 229, 0.26),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -3px 5px 0 rgba(0, 0, 0, 0.28);
 }
 
 .clay-button-primary:hover {
-  background-color: #4F46E5;
+  background: linear-gradient(180deg, #575AE8 0%, #4338CA 100%);
+  box-shadow: 
+    0 10px 25px -3px rgba(79, 70, 229, 0.52),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 0.48),
+    inset 0 -3px 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+.clay-button-primary:active {
+  transform: scale(0.97);
+  box-shadow: 
+    0 2px 6px rgba(79, 70, 229, 0.35),
+    inset 0 3px 6px rgba(0, 0, 0, 0.35);
 }
 
 .clay-button-secondary {
   background-color: #FFFFFF;
   color: #111111;
-  border: 1px solid #E5E5E5;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  border: 1px solid #E1E4EB;
+  box-shadow: 
+    0 5px 16px -2px rgba(15, 23, 42, 0.08),
+    0 2px 5px -1px rgba(15, 23, 42, 0.04),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 1),
+    inset 0 -2.5px 5px 0 rgba(15, 23, 42, 0.045);
 }
 
 .clay-button-secondary:hover {
-  background-color: #FAFAFA;
+  background-color: #FAFAFC;
+  box-shadow: 
+    0 7px 20px -2px rgba(15, 23, 42, 0.11),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 1),
+    inset 0 -2.5px 5px 0 rgba(15, 23, 42, 0.05);
+}
+
+.clay-button-secondary:active {
+  transform: scale(0.97);
+  box-shadow: 
+    0 1px 3px rgba(15, 23, 42, 0.06),
+    inset 0 2px 4px rgba(15, 23, 42, 0.08);
 }
 
 .clay-button-success {
-  background-color: #22C55E;
+  background: linear-gradient(180deg, #22C55E 0%, #16A34A 100%);
   color: #FFFFFF;
-  box-shadow: 0 6px 16px -2px rgba(34, 197, 94, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  border: 1px solid #15803D;
+  box-shadow: 
+    0 8px 22px -3px rgba(22, 163, 74, 0.46),
+    0 3px 8px -1px rgba(22, 163, 74, 0.26),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -3px 5px 0 rgba(0, 0, 0, 0.28);
 }
 
 .clay-button-danger {
-  background-color: #EF4444;
+  background: linear-gradient(180deg, #EF4444 0%, #DC2626 100%);
   color: #FFFFFF;
-  box-shadow: 0 6px 16px -2px rgba(239, 68, 68, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  border: 1px solid #B91C1C;
+  box-shadow: 
+    0 8px 22px -3px rgba(220, 38, 38, 0.46),
+    0 3px 8px -1px rgba(220, 38, 38, 0.26),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -3px 5px 0 rgba(0, 0, 0, 0.28);
 }
 
-.clay-input {
-  background-color: #FAFAFA;
-  border: 1.5px solid #E5E5E5;
-  border-radius: 0.875rem;
-  color: #111111;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
-  transition: all 0.2s ease;
+/* Clay Badge / Pill */
+.clay-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  font-weight: 600;
+  box-shadow: 
+    0 2px 6px -1px rgba(15, 23, 42, 0.06),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.8),
+    inset 0 -1.5px 2px rgba(15, 23, 42, 0.03);
 }
 
-.clay-input:focus {
-  outline: none;
-  border-color: #6366F1;
-  background-color: #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+/* Clay Navigation Dock (Mobile Bottom Bar) */
+.clay-dock {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 
+    0 -10px 30px -4px rgba(15, 23, 42, 0.09),
+    0 -2px 8px -1px rgba(15, 23, 42, 0.03),
+    inset 0 2px 3px rgba(255, 255, 255, 1);
+}
+
+/* Clay Header (Top Bar) */
+.clay-header {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 
+    0 6px 20px -3px rgba(15, 23, 42, 0.07),
+    inset 0 -1px 2px rgba(15, 23, 42, 0.03);
 }
 
 /* Custom scrollbar */
@@ -129,11 +273,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #F5F5F5;
+  background: #F1F3F8;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4D4D4;
+  background: #CBD5E1;
   border-radius: 9999px;
 }
 
@@ -158,7 +302,7 @@
     break-inside: avoid;
     page-break-inside: avoid;
   }
-  .clay-card, .clay-card-flat {
+  .clay-card, .clay-card-flat, .clay-card-prominent, .clay-card-interactive {
     box-shadow: none !important;
     border: 1px solid #CCC !important;
   }

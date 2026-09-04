@@ -155,7 +155,7 @@ export const SchoolListView: React.FC = () => {
       ) : (
         <div className="space-y-2.5">
           {schools.map((school) => (
-            <ClayCard key={school.id} variant="flat" className="p-4 hover:border-neutral-300 transition-all">
+            <ClayCard key={school.id} variant="default" className="p-4 hover:border-neutral-300 transition-all">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">

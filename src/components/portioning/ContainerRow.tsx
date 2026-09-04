@@ -50,7 +50,7 @@ export const ContainerRow: React.FC<ContainerRowProps> = ({
   };
 
   return (
-    <div className="p-3.5 bg-[#FFFFFF] rounded-2xl border border-neutral-200/90 shadow-2xs hover:border-indigo-200 transition-all flex flex-col gap-2">
+    <div className="p-3.5 bg-white rounded-2xl border border-slate-200/90 shadow-[0_4px_14px_-2px_rgba(15,23,42,0.06),inset_0_1.5px_2px_#fff,inset_0_-2px_3px_rgba(15,23,42,0.02)] hover:border-indigo-300 transition-all flex flex-col gap-2">
       <div className="flex items-center justify-between gap-2">
         {/* Left: Container Title & Notes */}
         <div className="flex items-center gap-2 min-w-0">

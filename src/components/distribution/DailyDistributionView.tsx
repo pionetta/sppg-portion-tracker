@@ -309,14 +309,14 @@ export const DailyDistributionView: React.FC<DailyDistributionViewProps> = ({ cu
       </div>
 
       {/* Real-time Summary Cards: Pagi vs Siang vs Total */}
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-2.5">
         {/* Pagi Card */}
         <div
           onClick={() => setFilterPeriod(filterPeriod === 'Pagi' ? 'Semua' : 'Pagi')}
           className={`p-3 rounded-2xl border transition-all cursor-pointer ${
             filterPeriod === 'Pagi'
-              ? 'bg-amber-100/90 border-amber-400 shadow-xs ring-2 ring-amber-300/50'
-              : 'bg-amber-50/60 border-amber-200/80 hover:bg-amber-50'
+              ? 'bg-amber-100/90 border-amber-400 shadow-[0_4px_14px_rgba(245,158,11,0.2),inset_0_2px_3px_#fff] ring-2 ring-amber-300/60'
+              : 'bg-white clay-card-flat hover:border-amber-300 shadow-[0_4px_12px_-2px_rgba(245,158,11,0.08),inset_0_1.5px_2px_#fff]'
           }`}
         >
           <div className="flex items-center justify-center gap-1 text-[11px] font-bold text-amber-800 uppercase tracking-wider">
@@ -324,10 +324,10 @@ export const DailyDistributionView: React.FC<DailyDistributionViewProps> = ({ cu
             PAGI
           </div>
           <div className="text-center mt-1">
-            <div className="text-xl font-black text-amber-950 tracking-tight">
+            <div className="text-xl sm:text-2xl font-black text-amber-950 tracking-tight tabular-nums">
               {dailyData.morning_allocations}
             </div>
-            <div className="text-[10px] font-medium text-amber-700">
+            <div className="text-[10px] font-semibold text-amber-700">
               {morningSchoolsCount} sekolah
             </div>
           </div>
@@ -338,8 +338,8 @@ export const DailyDistributionView: React.FC<DailyDistributionViewProps> = ({ cu
           onClick={() => setFilterPeriod(filterPeriod === 'Siang' ? 'Semua' : 'Siang')}
           className={`p-3 rounded-2xl border transition-all cursor-pointer ${
             filterPeriod === 'Siang'
-              ? 'bg-indigo-100/90 border-indigo-400 shadow-xs ring-2 ring-indigo-300/50'
-              : 'bg-indigo-50/60 border-indigo-200/80 hover:bg-indigo-50'
+              ? 'bg-indigo-100/90 border-indigo-400 shadow-[0_4px_14px_rgba(99,102,241,0.2),inset_0_2px_3px_#fff] ring-2 ring-indigo-300/60'
+              : 'bg-white clay-card-flat hover:border-indigo-300 shadow-[0_4px_12px_-2px_rgba(99,102,241,0.08),inset_0_1.5px_2px_#fff]'
           }`}
         >
           <div className="flex items-center justify-center gap-1 text-[11px] font-bold text-indigo-800 uppercase tracking-wider">
@@ -347,10 +347,10 @@ export const DailyDistributionView: React.FC<DailyDistributionViewProps> = ({ cu
             SIANG
           </div>
           <div className="text-center mt-1">
-            <div className="text-xl font-black text-indigo-950 tracking-tight">
+            <div className="text-xl sm:text-2xl font-black text-indigo-950 tracking-tight tabular-nums">
               {dailyData.afternoon_allocations}
             </div>
-            <div className="text-[10px] font-medium text-indigo-700">
+            <div className="text-[10px] font-semibold text-indigo-700">
               {afternoonSchoolsCount} sekolah
             </div>
           </div>
@@ -361,8 +361,8 @@ export const DailyDistributionView: React.FC<DailyDistributionViewProps> = ({ cu
           onClick={() => setFilterPeriod('Semua')}
           className={`p-3 rounded-2xl border transition-all cursor-pointer ${
             filterPeriod === 'Semua'
-              ? 'bg-emerald-100/90 border-emerald-400 shadow-xs ring-2 ring-emerald-300/50'
-              : 'bg-emerald-50/60 border-emerald-200/80 hover:bg-emerald-50'
+              ? 'bg-emerald-100/90 border-emerald-400 shadow-[0_4px_14px_rgba(34,197,94,0.2),inset_0_2px_3px_#fff] ring-2 ring-emerald-300/60'
+              : 'bg-white clay-card-flat hover:border-emerald-300 shadow-[0_4px_12px_-2px_rgba(34,197,94,0.08),inset_0_1.5px_2px_#fff]'
           }`}
         >
           <div className="flex items-center justify-center gap-1 text-[11px] font-bold text-emerald-800 uppercase tracking-wider">
@@ -370,10 +370,10 @@ export const DailyDistributionView: React.FC<DailyDistributionViewProps> = ({ cu
             TOTAL
           </div>
           <div className="text-center mt-1">
-            <div className="text-xl font-black text-emerald-950 tracking-tight">
+            <div className="text-xl sm:text-2xl font-black text-emerald-950 tracking-tight tabular-nums">
               {dailyData.total_school_allocations}
             </div>
-            <div className="text-[10px] font-medium text-emerald-700">
+            <div className="text-[10px] font-semibold text-emerald-700">
               {dailyData.schools.length} sekolah
             </div>
           </div>
@@ -514,8 +514,8 @@ export const DailyDistributionView: React.FC<DailyDistributionViewProps> = ({ cu
             return (
               <ClayCard
                 key={school.id}
-                variant="flat"
-                className="p-4 transition-all border border-[#E5E5E5] bg-[#FFFFFF]"
+                variant="default"
+                className="p-4 sm:p-5 transition-all"
               >
                 <div className="flex flex-col gap-3">
                   {/* Row 1: School Name, Level, Total, and Edit Button */}

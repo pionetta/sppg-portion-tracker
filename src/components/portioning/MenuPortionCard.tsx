@@ -162,22 +162,22 @@ export const MenuPortionCard: React.FC<MenuPortionCardProps> = ({
       </div>
 
       {/* Stats Breakdown Strip */}
-      <div className="mt-3.5 grid grid-cols-4 gap-2 bg-[#FAFAFA] p-3 rounded-2xl border border-neutral-200/70">
+      <div className="mt-3.5 grid grid-cols-4 gap-2 clay-well p-3 rounded-2xl text-center">
         <div>
           <div className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Target</div>
-          <div className="text-sm sm:text-base font-black text-neutral-800">{menu.target_portions}</div>
+          <div className="text-sm sm:text-base font-black text-[#111111] tabular-nums">{menu.target_portions}</div>
         </div>
         <div>
           <div className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Aktual</div>
-          <div className="text-sm sm:text-base font-black text-indigo-600">{menu.total_actual_portions}</div>
+          <div className="text-sm sm:text-base font-black text-indigo-600 tabular-nums">{menu.total_actual_portions}</div>
         </div>
         <div>
           <div className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Sisa</div>
-          <div className="text-sm sm:text-base font-black text-neutral-700">{menu.remaining_portions}</div>
+          <div className="text-sm sm:text-base font-black text-[#111111] tabular-nums">{menu.remaining_portions}</div>
         </div>
         <div>
           <div className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider">Progress</div>
-          <div className="text-sm sm:text-base font-black text-emerald-600">{menu.progress_percentage}%</div>
+          <div className="text-sm sm:text-base font-black text-emerald-600 tabular-nums">{menu.progress_percentage}%</div>
         </div>
       </div>
 

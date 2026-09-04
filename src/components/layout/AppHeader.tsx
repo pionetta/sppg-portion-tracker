@@ -27,14 +27,14 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
   }
 
   return (
-    <header className="sticky top-0 z-40 bg-[#FFFFFF] border-b border-[#E5E5E5] px-4 py-2.5 pt-safe">
+    <header className="sticky top-0 z-40 clay-header px-4 py-2.5 pt-safe">
       <div className="max-w-2xl mx-auto flex items-center justify-between gap-3 h-11">
         {/* Logo & Title */}
         <div className="flex items-center gap-2.5 min-w-0">
           <img
             src="/sppg-logo.svg"
             alt="SPPG Logo"
-            className="w-9 h-9 rounded-xl shrink-0 shadow-xs object-contain"
+            className="w-9 h-9 rounded-xl shrink-0 shadow-[0_3px_8px_rgba(99,102,241,0.25),inset_0_1px_2px_rgba(255,255,255,0.4)] object-contain"
           />
           <div className="min-w-0">
             <h1 className="text-sm sm:text-base font-bold text-[#111111] truncate tracking-tight leading-tight">
@@ -59,7 +59,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
             />
             <button
               type="button"
-              className="clay-card-flat px-2.5 py-1.5 flex items-center gap-1.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer"
+              className="clay-card-flat px-2.5 py-1.5 flex items-center gap-1.5 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 active:scale-95 transition-all cursor-pointer shadow-[0_2px_6px_rgba(0,0,0,0.04),inset_0_1px_1px_#fff]"
             >
               <Calendar className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
               <span className="hidden sm:inline">Pilih Tanggal</span>
@@ -70,7 +70,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
           <button
             onClick={triggerSync}
             title={isOnline ? 'Online (Klik untuk sinkronkan)' : 'Offline (Tersimpan di perangkat)'}
-            className={`px-2.5 py-1 rounded-full text-xs font-medium border flex items-center gap-1.5 transition-all cursor-pointer select-none ${
+            className={`clay-badge px-2.5 py-1 text-xs font-medium border flex items-center gap-1.5 transition-all cursor-pointer select-none active:scale-95 ${
               !isOnline
                 ? 'bg-neutral-50 text-[#8A8A8A] border-[#E5E5E5]'
                 : isSyncing

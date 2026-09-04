@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 interface ClayCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'default' | 'flat' | 'interactive';
+  variant?: 'default' | 'prominent' | 'flat' | 'interactive' | 'inset';
   className?: string;
   children: React.ReactNode;
 }
@@ -16,8 +16,10 @@ export const ClayCard: React.FC<ClayCardProps> = ({
 }) => {
   const variantClass = {
     default: 'clay-card p-4 sm:p-5',
+    prominent: 'clay-card-prominent p-5 sm:p-6',
     flat: 'clay-card-flat p-4',
-    interactive: 'clay-card-interactive p-4 cursor-pointer',
+    interactive: 'clay-card-interactive p-4 sm:p-5 cursor-pointer',
+    inset: 'clay-well p-4',
   }[variant];
 
   return (
