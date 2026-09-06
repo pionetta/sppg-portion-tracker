@@ -62,13 +62,13 @@ export function AppContent() {
         {activeTab === 'schools' && (
           <div className="space-y-3">
             <div className="max-w-2xl mx-auto px-4 pt-2">
-              <div className="flex items-center gap-1.5 p-1 bg-white rounded-2xl border border-neutral-200 shadow-2xs">
+              <div className="flex items-center gap-1.5 p-1.5 bg-slate-200/60 rounded-2xl border border-slate-200/80 shadow-[inset_0_2px_4px_rgba(15,23,42,0.06),inset_0_-1px_2px_rgba(255,255,255,0.8)] backdrop-blur-md">
                 <button
                   onClick={() => setSchoolsSubTab('daily')}
-                  className={`flex-1 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+                  className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 active:scale-95 ${
                     schoolsSubTab === 'daily'
-                      ? 'bg-indigo-600 text-white shadow-sm'
-                      : 'text-neutral-600 hover:text-neutral-900'
+                      ? 'bg-gradient-to-b from-indigo-500 to-indigo-600 text-white shadow-[0_4px_12px_-2px_rgba(79,70,229,0.4),inset_0_1.5px_2px_rgba(255,255,255,0.4),inset_0_-2px_4px_rgba(0,0,0,0.2)] scale-[1.01]'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/40'
                   }`}
                 >
                   <Truck className="w-3.5 h-3.5" />
@@ -76,10 +76,10 @@ export function AppContent() {
                 </button>
                 <button
                   onClick={() => setSchoolsSubTab('master')}
-                  className={`flex-1 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
+                  className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 active:scale-95 ${
                     schoolsSubTab === 'master'
-                      ? 'bg-indigo-600 text-white shadow-sm'
-                      : 'text-neutral-600 hover:text-neutral-900'
+                      ? 'bg-gradient-to-b from-indigo-500 to-indigo-600 text-white shadow-[0_4px_12px_-2px_rgba(79,70,229,0.4),inset_0_1.5px_2px_rgba(255,255,255,0.4),inset_0_-2px_4px_rgba(0,0,0,0.2)] scale-[1.01]'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/40'
                   }`}
                 >
                   <School className="w-3.5 h-3.5" />
@@ -99,23 +99,23 @@ export function AppContent() {
         {activeTab === 'history' && (
           <div className="space-y-3">
             <div className="max-w-2xl mx-auto px-4 pt-2">
-              <div className="flex items-center gap-1.5 p-1 bg-white rounded-2xl border border-neutral-200 shadow-2xs">
+              <div className="flex items-center gap-1.5 p-1.5 bg-slate-200/60 rounded-2xl border border-slate-200/80 shadow-[inset_0_2px_4px_rgba(15,23,42,0.06),inset_0_-1px_2px_rgba(255,255,255,0.8)] backdrop-blur-md">
                 <button
                   onClick={() => setHistorySubTab('history')}
-                  className={`flex-1 py-1.5 text-xs font-bold rounded-xl transition-all ${
+                  className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 active:scale-95 ${
                     historySubTab === 'history'
-                      ? 'bg-indigo-600 text-white shadow-sm'
-                      : 'text-neutral-600 hover:text-neutral-900'
+                      ? 'bg-gradient-to-b from-indigo-500 to-indigo-600 text-white shadow-[0_4px_12px_-2px_rgba(79,70,229,0.4),inset_0_1.5px_2px_rgba(255,255,255,0.4),inset_0_-2px_4px_rgba(0,0,0,0.2)] scale-[1.01]'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/40'
                   }`}
                 >
                   Riwayat Produksi
                 </button>
                 <button
                   onClick={() => setHistorySubTab('reports')}
-                  className={`flex-1 py-1.5 text-xs font-bold rounded-xl transition-all ${
+                  className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 active:scale-95 ${
                     historySubTab === 'reports'
-                      ? 'bg-indigo-600 text-white shadow-sm'
-                      : 'text-neutral-600 hover:text-neutral-900'
+                      ? 'bg-gradient-to-b from-indigo-500 to-indigo-600 text-white shadow-[0_4px_12px_-2px_rgba(79,70,229,0.4),inset_0_1.5px_2px_rgba(255,255,255,0.4),inset_0_-2px_4px_rgba(0,0,0,0.2)] scale-[1.01]'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/40'
                   }`}
                 >
                   Laporan & Ekspor

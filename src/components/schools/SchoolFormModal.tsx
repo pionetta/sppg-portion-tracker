@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { School, DistributionPeriod } from '../../types';
-import { ClayCard } from '../common/ClayCard';
 import { ClayButton } from '../common/ClayButton';
 import { ClayInput } from '../common/ClayInput';
 import { X } from 'lucide-react';
@@ -82,24 +81,32 @@ export const SchoolFormModal: React.FC<SchoolFormModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-md animate-in fade-in duration-200">
       <div className="w-full max-w-md animate-in zoom-in-95 duration-200">
-        <ClayCard className="p-5 sm:p-6 relative border-[#E5E5E5]">
+        <div className="clay-card-prominent p-6 relative bg-white/95 backdrop-blur-md border border-white/60">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-1.5 text-neutral-400 hover:text-neutral-700 rounded-full"
+            className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-700 rounded-full hover:bg-slate-100 transition-all cursor-pointer active:scale-95"
+            aria-label="Tutup"
           >
             <X className="w-5 h-5" />
           </button>
 
-          <h2 className="text-lg font-bold text-[#111111]">
-            {initialData ? 'Edit Master Sekolah' : 'Tambah Master Sekolah'}
-          </h2>
-          <p className="text-xs text-[#666666] mt-0.5">
-            Porsi default akan otomatis diambil untuk alokasi harian baru.
-          </p>
+          <div className="flex items-center gap-3 mb-1">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white flex items-center justify-center shadow-[0_4px_12px_rgba(99,102,241,0.35),inset_0_1.5px_2px_rgba(255,255,255,0.4)]">
+              <span className="text-lg font-black">{initialData ? '✏️' : '🏫'}</span>
+            </div>
+            <div>
+              <h2 className="text-lg font-black text-slate-800 tracking-tight">
+                {initialData ? 'Edit Master Sekolah' : 'Tambah Master Sekolah'}
+              </h2>
+              <p className="text-xs text-slate-500">
+                Porsi standar untuk alokasi pengantaran harian.
+              </p>
+            </div>
+          </div>
 
-          <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+          <form onSubmit={handleSubmit} className="mt-5 space-y-4">
             <ClayInput
               label="Nama Sekolah"
               placeholder="Contoh: SD Negeri 01 Pagi"
@@ -111,11 +118,11 @@ export const SchoolFormModal: React.FC<SchoolFormModalProps> = ({
 
             <div className="grid grid-cols-2 gap-3">
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#111111] px-0.5">Jenjang</label>
+                <label className="text-xs font-bold text-slate-700 px-0.5">Jenjang</label>
                 <select
                   value={level}
                   onChange={(e) => setLevel(e.target.value)}
-                  className="clay-input px-3 py-2.5 text-sm bg-[#FAFAFA]"
+                  className="clay-input px-3 py-2.5 text-sm bg-slate-50 text-slate-800 font-medium focus:ring-2 focus:ring-indigo-300 outline-none"
                 >
                   <option value="PAUD/TK">PAUD / TK</option>
                   <option value="SD">SD</option>
@@ -126,13 +133,13 @@ export const SchoolFormModal: React.FC<SchoolFormModalProps> = ({
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#111111] px-0.5">
+                <label className="text-xs font-bold text-slate-700 px-0.5">
                   Periode Distribusi
                 </label>
                 <select
                   value={period}
                   onChange={(e) => setPeriod(e.target.value as DistributionPeriod)}
-                  className="clay-input px-3 py-2.5 text-sm bg-[#FAFAFA]"
+                  className="clay-input px-3 py-2.5 text-sm bg-slate-50 text-slate-800 font-medium focus:ring-2 focus:ring-indigo-300 outline-none"
                 >
                   <option value="Pagi">Pagi</option>
                   <option value="Siang">Siang</option>
@@ -160,7 +167,7 @@ export const SchoolFormModal: React.FC<SchoolFormModalProps> = ({
             />
 
             {error && (
-              <div className="p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl">
+              <div className="p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-2xl shadow-sm">
                 {error}
               </div>
             )}
@@ -174,7 +181,7 @@ export const SchoolFormModal: React.FC<SchoolFormModalProps> = ({
               </ClayButton>
             </div>
           </form>
-        </ClayCard>
+        </div>
       </div>
     </div>
   );

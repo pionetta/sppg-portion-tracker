@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useDailyProduction } from '../../hooks/useDailyProduction';
 import { usePortioning } from '../../hooks/usePortioning';
 import { useMenus } from '../../hooks/useMenus';
-import { ClayCard } from '../common/ClayCard';
-import { ClayButton } from '../common/ClayButton';
 import { MenuPortionCard } from './MenuPortionCard';
 import { AddDailyMenuModal } from './AddDailyMenuModal';
 import { LoadingState, EmptyState, ErrorState } from '../common/States';
@@ -199,55 +197,62 @@ export const PortioningView: React.FC<PortioningViewProps> = ({ currentDate }) =
   };
 
   return (
-    <div className="space-y-4 pb-28 max-w-2xl mx-auto px-4 pt-2">
-      {/* Production Lock Banner */}
+    <div className="space-y-4 pb-36 max-w-2xl mx-auto px-4 pt-3">
+      {/* Production Lock Banner - Full Clay Pill */}
       {isLocked ? (
-        <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-between gap-3 text-xs text-emerald-900 shadow-2xs">
-          <div className="flex items-center gap-2">
-            <Lock className="w-4 h-4 text-emerald-600 shrink-0" />
+        <div className="p-4 bg-emerald-50 border border-emerald-200/90 rounded-3xl flex items-center justify-between gap-3 text-xs text-emerald-950 shadow-[0_6px_18px_-2px_rgba(16,185,129,0.12),inset_0_2px_3px_#fff,inset_0_-2px_4px_rgba(16,185,129,0.05)]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-emerald-100/80 text-emerald-700 flex items-center justify-center border border-emerald-300/70 shadow-[inset_0_1.5px_2px_#fff] shrink-0">
+              <Lock className="w-4 h-4" />
+            </div>
             <div>
-              <span className="font-bold">Status: Produksi Selesai & Terkunci</span>
-              <p className="text-[11px] text-emerald-700">
+              <span className="font-black text-xs text-emerald-900 block">Status: Produksi Selesai & Terkunci</span>
+              <p className="text-[11px] text-emerald-700 font-medium">
                 Data terlindungi dari perubahan yang tidak disengaja.
               </p>
             </div>
           </div>
-          <ClayButton
-            variant="secondary"
-            size="sm"
+          <button
+            type="button"
             onClick={handleReopenProduction}
-            leftIcon={<Unlock className="w-3.5 h-3.5" />}
-            className="text-emerald-800 border-emerald-300 bg-white"
+            className="px-3.5 py-2 bg-white text-emerald-800 rounded-2xl border border-emerald-200 font-bold text-xs flex items-center gap-1.5 shadow-[0_4px_12px_-2px_rgba(16,185,129,0.15),inset_0_1.5px_2px_#fff,inset_0_-2px_3px_rgba(0,0,0,0.04)] hover:bg-emerald-50/50 active:scale-95 transition-all cursor-pointer shrink-0"
           >
-            Buka Kembali
-          </ClayButton>
+            <Unlock className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Buka Kembali</span>
+          </button>
         </div>
       ) : isAllCompleted ? (
-        <div className="p-3 bg-indigo-50 border border-indigo-200 rounded-2xl flex items-center justify-between gap-2 text-xs text-indigo-900">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-indigo-600 shrink-0" />
-            <span>Semua menu telah mencapai target pemorsian.</span>
+        <div className="p-4 bg-indigo-50 border border-indigo-200/90 rounded-3xl flex items-center justify-between gap-3 text-xs text-indigo-950 shadow-[0_6px_18px_-2px_rgba(99,102,241,0.15),inset_0_2px_3px_#fff,inset_0_-2px_4px_rgba(99,102,241,0.05)]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center border border-indigo-200 shadow-[inset_0_1.5px_2px_#fff] shrink-0">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
+            <div>
+              <span className="font-black text-xs text-indigo-950 block">Target Porsi Tercapai!</span>
+              <p className="text-[11px] text-indigo-700 font-medium">
+                Semua menu telah mencapai target pemorsian hari ini.
+              </p>
+            </div>
           </div>
-          <ClayButton
-            variant="primary"
-            size="sm"
+          <button
+            type="button"
             onClick={handleCompleteProduction}
-            leftIcon={<FileCheck2 className="w-4 h-4" />}
-            className="bg-emerald-600 hover:bg-emerald-700"
+            className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-black text-xs flex items-center gap-1.5 shadow-[0_6px_18px_-2px_rgba(16,185,129,0.4),inset_0_2px_3px_rgba(255,255,255,0.35),inset_0_-2px_3px_rgba(0,0,0,0.2)] active:scale-95 transition-all cursor-pointer shrink-0"
           >
-            Selesaikan & Kunci
-          </ClayButton>
+            <FileCheck2 className="w-4 h-4" />
+            <span>Selesaikan & Kunci</span>
+          </button>
         </div>
       ) : null}
 
-      {/* Sticky Mobile Summary Bar with Single Target Editor per DESIGN.md Section 8 */}
-      <ClayCard variant="prominent" className="sticky top-14 z-30 p-4 sm:p-5">
-        <div className="flex items-center justify-between gap-2 mb-2">
+      {/* Sticky Mobile Summary Bar — ULTRA FULL CLAYMORPHISM */}
+      <div className="sticky top-14 z-30 p-4 sm:p-5 bg-white/95 backdrop-blur-2xl rounded-3xl border border-slate-200/90 shadow-[0_16px_38px_-6px_rgba(15,23,42,0.12),0_4px_12px_-2px_rgba(15,23,42,0.05),inset_0_2.5px_4px_#fff,inset_0_-4px_8px_rgba(15,23,42,0.045)] space-y-3.5 transition-all">
+        <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+            <span className="text-xs font-black text-[#111111] uppercase tracking-wider">
               Produksi Hari Ini
             </span>
-            <span className="text-[11px] px-2 py-0.5 rounded-full font-bold bg-neutral-100 text-neutral-700">
+            <span className="text-[11px] px-2.5 py-0.5 rounded-full font-black bg-slate-100 text-slate-700 border border-slate-200/80 shadow-[inset_0_1px_1.5px_#fff]">
               {dailyData.status === 'completed'
                 ? 'Selesai'
                 : dailyData.status === 'in_progress'
@@ -259,102 +264,118 @@ export const PortioningView: React.FC<PortioningViewProps> = ({ currentDate }) =
           {/* Unified Target Display / Editor */}
           <div className="flex items-center gap-1.5">
             {isEditingTarget ? (
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 bg-white p-1 rounded-2xl border border-indigo-400 shadow-[0_2px_8px_rgba(99,102,241,0.2),inset_0_1.5px_2px_#fff]">
                 <input
                   type="number"
                   inputMode="numeric"
                   value={targetInput}
                   onChange={(e) => setTargetInput(e.target.value)}
-                  className="w-18 px-2 py-1 text-xs font-bold bg-white border border-indigo-500 rounded-lg focus:outline-none"
+                  className="w-20 px-2 py-1 text-xs font-black bg-slate-50 border border-slate-200 rounded-xl focus:outline-none tabular-nums"
                   autoFocus
                 />
                 <button
+                  type="button"
                   onClick={handleSaveTarget}
                   disabled={isUpdatingTarget}
-                  className="p-1 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+                  className="p-1.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 active:scale-95 shadow-[0_2px_6px_rgba(99,102,241,0.3)] cursor-pointer"
                 >
-                  <Check className="w-3 h-3" />
+                  <Check className="w-3.5 h-3.5" />
                 </button>
                 <button
+                  type="button"
                   onClick={() => setIsEditingTarget(false)}
-                  className="p-1 text-neutral-500 hover:bg-neutral-100 rounded-lg"
+                  className="p-1.5 text-neutral-500 hover:bg-neutral-100 rounded-xl active:scale-95 cursor-pointer"
                 >
-                  <X className="w-3 h-3" />
+                  <X className="w-3.5 h-3.5" />
                 </button>
               </div>
             ) : (
               <button
+                type="button"
                 onClick={handleStartEditTarget}
                 disabled={isLocked}
-                className="flex items-center gap-1 text-xs font-black text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-xl hover:bg-indigo-100 disabled:opacity-50 cursor-pointer border border-indigo-200/80 shadow-[0_1px_2px_rgba(99,102,241,0.08)]"
-                title="Klik untuk mengubah target harian"
+                className="flex items-center gap-1.5 text-xs font-black text-indigo-700 bg-white px-3 py-1.5 rounded-2xl hover:bg-indigo-50/50 disabled:opacity-50 cursor-pointer border border-indigo-200/90 shadow-[0_4px_12px_-2px_rgba(99,102,241,0.16),inset_0_1.5px_2px_#fff,inset_0_-2px_3px_rgba(99,102,241,0.05)] active:scale-95 transition-all"
+                title="Klik untuk mengubah target porsi harian"
               >
                 <span>Target: {dailyData.target_portions} porsi</span>
-                {!isLocked && <Edit2 className="w-3 h-3 text-indigo-500" />}
+                {!isLocked && <Edit2 className="w-3 h-3 text-indigo-500 stroke-[2.5]" />}
               </button>
             )}
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-2 text-center clay-well p-2.5 sm:p-3 rounded-2xl">
-          <div>
-            <div className="text-[10px] text-neutral-500 font-semibold">Target</div>
-            <div className="text-sm sm:text-base font-black text-[#111111] tabular-nums">
+        {/* 4-Column Key Metrics in Sunken Clay Well */}
+        <div className="grid grid-cols-4 gap-2 p-2.5 sm:p-3 rounded-2xl bg-[#EDEFF5] border border-slate-200/90 shadow-[inset_0_3px_8px_rgba(15,23,42,0.09),inset_0_1px_2px_rgba(15,23,42,0.05),inset_0_-1px_2px_#fff] text-center items-center">
+          <div className="py-1">
+            <div className="text-[10px] text-[#666666] font-bold uppercase tracking-wider">Target</div>
+            <div className="text-base sm:text-lg font-black text-[#111111] tabular-nums mt-0.5">
               {dailyData.target_portions}
             </div>
           </div>
-          <div>
-            <div className="text-[10px] text-neutral-500 font-semibold">Selesai</div>
-            <div className="text-sm sm:text-base font-black text-indigo-600 tabular-nums">
+          <div className="bg-white rounded-2xl py-1.5 px-1 shadow-[0_6px_16px_-2px_rgba(99,102,241,0.2),inset_0_2px_2.5px_#fff,inset_0_-2px_3px_rgba(99,102,241,0.06)] border border-indigo-100/90">
+            <div className="text-[10px] text-indigo-600 font-black uppercase tracking-wider">Selesai</div>
+            <div className="text-base sm:text-lg font-black text-indigo-600 tabular-nums mt-0.5">
               {dailyData.completed_menus_count} / {dailyData.total_menus_count}
             </div>
           </div>
-          <div>
-            <div className="text-[10px] text-neutral-500 font-semibold">Sekolah</div>
-            <div className="text-sm sm:text-base font-black text-neutral-700 tabular-nums">
+          <div className="py-1">
+            <div className="text-[10px] text-[#666666] font-bold uppercase tracking-wider">Sekolah</div>
+            <div className="text-base sm:text-lg font-black text-neutral-800 tabular-nums mt-0.5">
               {dailyData.schools.length}
             </div>
           </div>
-          <div>
-            <div className="text-[10px] text-neutral-500 font-semibold">Progress</div>
-            <div className="text-sm sm:text-base font-black text-emerald-600 tabular-nums">
+          <div className="py-1">
+            <div className="text-[10px] text-emerald-700 font-black uppercase tracking-wider">Progress</div>
+            <div className="text-base sm:text-lg font-black text-emerald-600 tabular-nums mt-0.5">
               {dailyData.progress_percentage}%
             </div>
           </div>
         </div>
-      </ClayCard>
+      </div>
 
       {/* Action Header */}
-      <div className="flex items-center justify-between gap-3 pt-1">
+      <div className="flex items-center justify-between gap-3 pt-2">
         <div>
           <h2 className="text-lg font-black text-[#111111] tracking-tight">
             Komponen Menu Pemorsian
           </h2>
           <p className="text-xs text-[#666666]">
-            Setiap menu mempunyai target otomatis <strong>{dailyData.target_portions} porsi</strong>.
+            Target otomatis <strong>{dailyData.target_portions} porsi</strong> per komponen menu.
           </p>
         </div>
         {!isLocked && (
-          <ClayButton
-            variant="primary"
-            size="sm"
+          <button
+            type="button"
             onClick={() => setIsAddMenuOpen(true)}
-            leftIcon={<Plus className="w-4 h-4" />}
+            className="px-3.5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-black text-xs flex items-center gap-1.5 shadow-[0_8px_20px_-2px_rgba(99,102,241,0.4),inset_0_2px_3px_rgba(255,255,255,0.35),inset_0_-2.5px_3.5px_rgba(0,0,0,0.18)] active:scale-95 transition-all cursor-pointer shrink-0"
           >
-            Tambah Menu
-          </ClayButton>
+            <Plus className="w-4 h-4 stroke-[2.5]" />
+            <span>Tambah Menu</span>
+          </button>
         )}
       </div>
 
       {/* Menus List */}
       {dailyData.menus.length === 0 ? (
-        <EmptyState
-          title="Belum Ada Menu Hari Ini"
-          description="Tambahkan menu makanan sesuai kategori untuk mulai mencatat wadah pemorsian."
-          actionLabel="Tambah Menu Pertama"
-          onAction={() => setIsAddMenuOpen(true)}
-          icon={<Scale className="w-8 h-8" />}
-        />
+        <div className="p-8 bg-white rounded-3xl border border-slate-200/90 shadow-[0_10px_25px_-4px_rgba(15,23,42,0.08),inset_0_2px_3px_#fff,inset_0_-3px_5px_rgba(15,23,42,0.03)] text-center space-y-3">
+          <div className="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto border border-indigo-200/80 shadow-[inset_0_2px_3px_#fff]">
+            <Scale className="w-7 h-7 stroke-[2.2]" />
+          </div>
+          <div>
+            <h3 className="text-base font-black text-[#111111]">Belum Ada Menu Hari Ini</h3>
+            <p className="text-xs text-[#666666] max-w-sm mx-auto mt-1">
+              Tambahkan menu makanan (Nasi, Lauk Hewani, Lauk Nabati, Sayur, Buah) untuk mulai mencatat wadah pemorsian.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setIsAddMenuOpen(true)}
+            className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-black text-xs inline-flex items-center gap-1.5 shadow-[0_8px_20px_-2px_rgba(99,102,241,0.4),inset_0_2px_3px_rgba(255,255,255,0.35),inset_0_-2px_3px_rgba(0,0,0,0.15)] active:scale-95 transition-all cursor-pointer"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Tambah Menu Pertama</span>
+          </button>
+        </div>
       ) : (
         <div className="space-y-4">
           {dailyData.menus.map((menu) => (

@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { useSchools } from '../../hooks/useSchools';
 import { School } from '../../types';
-import { ClayCard } from '../common/ClayCard';
-import { ClayButton } from '../common/ClayButton';
 import { ClayInput } from '../common/ClayInput';
-import { Badge } from '../common/Badge';
 import { LoadingState, EmptyState, ErrorState } from '../common/States';
 import { ConfirmModal } from '../common/ConfirmModal';
 import { SchoolFormModal } from './SchoolFormModal';
@@ -71,58 +68,63 @@ export const SchoolListView: React.FC = () => {
   };
 
   return (
-    <div className="space-y-4 pb-24 max-w-2xl mx-auto px-4 pt-2">
+    <div className="space-y-4 pb-36 max-w-3xl mx-auto px-4 pt-2 animate-in fade-in duration-300">
       {/* Header & Stats Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h2 className="text-xl font-black text-[#111111] tracking-tight">Master Data Sekolah</h2>
-          <p className="text-xs text-[#666666]">
-            Daftar sekolah penerima & porsi standar. Pengantaran harian dapat diatur pada tab Pengantaran.
+          <div className="flex items-center gap-2">
+            <span className="text-xl">🏫</span>
+            <h2 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">Master Data Sekolah</h2>
+          </div>
+          <p className="text-xs text-slate-500 mt-0.5">
+            Daftar sekolah penerima & porsi acuan standar.
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <ClayButton
-            variant="primary"
+          <button
+            type="button"
             onClick={handleOpenAdd}
-            leftIcon={<Plus className="w-4 h-4" />}
-            size="sm"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-700 text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-[0_6px_16px_rgba(99,102,241,0.35),inset_0_1.5px_2px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 active:scale-95 transition-all duration-200 cursor-pointer"
           >
+            <Plus className="w-4 h-4 stroke-[2.5]" />
             Tambah Sekolah
-          </ClayButton>
+          </button>
         </div>
       </div>
 
       {/* Info Notification Banner */}
-      <div className="p-3 bg-neutral-100 border border-neutral-200 rounded-2xl flex items-start gap-2.5 text-xs text-neutral-800">
-        <Info className="w-4 h-4 text-indigo-600 mt-0.5 shrink-0" />
-        <div>
-          <p className="font-bold">Pengantaran Pagi & Siang Berbeda Setiap Hari?</p>
-          <p className="text-[11px] text-neutral-600 mt-0.5">
-            Buka tab <strong>"Pengantaran Harian"</strong> untuk menentukan jadwal pagi/siang tiap sekolah khusus hari ini hanya dengan 1 kali klik.
+      <div className="p-3.5 bg-gradient-to-r from-indigo-50/80 via-white to-blue-50/80 border border-indigo-100/90 rounded-2xl flex items-start gap-3 shadow-[0_2px_8px_rgba(99,102,241,0.06),inset_0_1px_2px_#fff]">
+        <div className="w-7 h-7 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0 mt-0.5">
+          <Info className="w-4 h-4 stroke-[2.5]" />
+        </div>
+        <div className="text-xs">
+          <p className="font-extrabold text-slate-800">Pengantaran Pagi & Siang Berbeda Setiap Hari?</p>
+          <p className="text-slate-600 mt-0.5 leading-relaxed">
+            Buka sub-tab <strong>"Pengantaran Harian"</strong> di atas untuk mengatur alokasi pagi/siang khusus hari ini hanya dengan 1 kali klik.
           </p>
         </div>
       </div>
 
       {/* Summary Clay Card */}
-      <ClayCard className="bg-[#FFFFFF] border-[#E5E5E5] flex items-center justify-between p-4">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-bold">
-            <SchoolIcon className="w-5 h-5" />
+      <div className="clay-card-prominent p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-gradient-to-br from-white via-indigo-50/20 to-white">
+        <div className="flex items-center gap-3.5">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 text-white flex items-center justify-center shadow-[0_6px_16px_rgba(99,102,241,0.35),inset_0_1.5px_2px_rgba(255,255,255,0.4)]">
+            <SchoolIcon className="w-6 h-6 stroke-[2.2]" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-neutral-500 uppercase tracking-wider">
-              Total Porsi Default
+            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+              Total Porsi Acuan Standar
             </div>
-            <div className="text-xl font-bold text-[#111111] tabular-nums">
+            <div className="text-2xl font-black text-slate-800 tabular-nums flex items-baseline gap-1.5">
               {totalDefaultPortions.toLocaleString('id-ID')}{' '}
-              <span className="text-xs font-medium text-neutral-500">porsi / hari</span>
+              <span className="text-xs font-semibold text-slate-500">porsi / hari</span>
             </div>
           </div>
         </div>
-        <Badge variant="neutral" size="md">
-          {schools.length} Sekolah
-        </Badge>
-      </ClayCard>
+        <div className="self-end sm:self-auto px-3.5 py-1.5 rounded-xl bg-indigo-50 text-indigo-700 font-extrabold text-xs border border-indigo-100/80 shadow-[inset_0_1px_2px_#fff]">
+          {schools.length} Sekolah Terdaftar
+        </div>
+      </div>
 
       {/* Search Input */}
       <div className="relative">
@@ -130,8 +132,8 @@ export const SchoolListView: React.FC = () => {
           placeholder="Cari nama sekolah, jenjang, atau catatan..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          leftAddon={<Search className="w-4 h-4" />}
-          className="bg-white"
+          leftAddon={<Search className="w-4 h-4 text-slate-400" />}
+          className="bg-white/90 shadow-[0_2px_6px_rgba(0,0,0,0.03)] focus:bg-white"
         />
       </div>
 
@@ -153,18 +155,21 @@ export const SchoolListView: React.FC = () => {
           icon={<SchoolIcon className="w-8 h-8" />}
         />
       ) : (
-        <div className="space-y-2.5">
+        <div className="space-y-3">
           {schools.map((school) => (
-            <ClayCard key={school.id} variant="default" className="p-4 hover:border-neutral-300 transition-all">
+            <div
+              key={school.id}
+              className="clay-card p-4 sm:p-5 rounded-3xl hover:-translate-y-0.5 transition-all duration-300 relative border border-slate-200/80 bg-white/95 shadow-[0_6px_16px_rgba(15,23,42,0.04),inset_0_1.5px_2px_rgba(255,255,255,0.9)]"
+            >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-sm sm:text-base font-bold text-[#111111] truncate">
+                    <h3 className="text-base font-black text-slate-800 truncate tracking-tight">
                       {school.name}
                     </h3>
-                    <Badge variant="neutral" size="sm">
+                    <span className="px-2.5 py-0.5 text-[11px] font-extrabold rounded-lg bg-slate-100 text-slate-600 border border-slate-200/60 shadow-xs">
                       {school.level}
-                    </Badge>
+                    </span>
                     <button
                       type="button"
                       onClick={async () => {
@@ -179,62 +184,63 @@ export const SchoolListView: React.FC = () => {
                           showToast(`${school.name}: Default diubah ke ${nextPeriod}`, 'success');
                         }
                       }}
-                      className="cursor-pointer transition-transform active:scale-95"
-                      title="Klik untuk ubah periode default"
+                      className="cursor-pointer transition-all active:scale-95 group"
+                      title="Klik untuk ubah periode jadwal default"
                     >
-                      <Badge
-                        variant={
+                      <span
+                        className={`inline-flex items-center gap-1 px-2.5 py-0.5 text-[11px] font-extrabold rounded-lg transition-all ${
                           school.distribution_period === 'Pagi'
-                            ? 'warning'
+                            ? 'bg-amber-100/80 text-amber-800 border border-amber-200/80 shadow-[0_2px_6px_rgba(245,158,11,0.2)]'
                             : school.distribution_period === 'Siang'
-                            ? 'primary'
-                            : 'success'
-                        }
-                        size="sm"
+                            ? 'bg-indigo-100/80 text-indigo-800 border border-indigo-200/80 shadow-[0_2px_6px_rgba(99,102,241,0.2)]'
+                            : 'bg-emerald-100/80 text-emerald-800 border border-emerald-200/80 shadow-[0_2px_6px_rgba(16,185,129,0.2)]'
+                        }`}
                       >
                         {school.distribution_period === 'Pagi' ? (
-                          <Sunrise className="w-3 h-3" />
+                          <Sunrise className="w-3 h-3 stroke-[2.5]" />
                         ) : (
-                          <Sun className="w-3 h-3" />
+                          <Sun className="w-3 h-3 stroke-[2.5]" />
                         )}
                         {school.distribution_period}
-                      </Badge>
+                      </span>
                     </button>
                   </div>
 
-                  <div className="mt-2 flex items-baseline gap-2">
-                    <span className="text-2xl font-black text-indigo-600 tracking-tight">
+                  <div className="mt-3 flex items-baseline gap-2">
+                    <span className="text-2xl sm:text-3xl font-black text-indigo-600 tracking-tight tabular-nums">
                       {school.default_portions}
                     </span>
-                    <span className="text-xs font-semibold text-neutral-500">porsi default</span>
+                    <span className="text-xs font-bold text-slate-400">porsi acuan</span>
                   </div>
 
                   {school.notes && (
-                    <p className="mt-1 text-xs text-neutral-500 line-clamp-2 italic">
+                    <p className="mt-1.5 text-xs text-slate-500 line-clamp-2 italic bg-slate-50 p-2 rounded-xl border border-slate-100">
                       "{school.notes}"
                     </p>
                   )}
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center gap-1 shrink-0">
+                <div className="flex items-center gap-1.5 shrink-0">
                   <button
                     onClick={() => handleOpenEdit(school)}
-                    className="p-2 text-neutral-500 hover:text-indigo-600 hover:bg-neutral-100 rounded-xl transition-all"
+                    className="p-2.5 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-2xl border border-slate-200/70 bg-white shadow-[0_2px_4px_rgba(0,0,0,0.04),inset_0_1px_1px_#fff] transition-all cursor-pointer active:scale-95"
                     title="Edit Sekolah"
+                    aria-label="Edit Sekolah"
                   >
                     <Edit3 className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => setDeletingSchool(school)}
-                    className="p-2 text-neutral-500 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all"
+                    className="p-2.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-2xl border border-slate-200/70 bg-white shadow-[0_2px_4px_rgba(0,0,0,0.04),inset_0_1px_1px_#fff] transition-all cursor-pointer active:scale-95"
                     title="Hapus Sekolah"
+                    aria-label="Hapus Sekolah"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
               </div>
-            </ClayCard>
+            </div>
           ))}
         </div>
       )}

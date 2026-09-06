@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DailyMenuWithContainers } from '../../types';
-import { ClayCard } from '../common/ClayCard';
-import { ClayButton } from '../common/ClayButton';
 import { ClayInput } from '../common/ClayInput';
-import { Badge } from '../common/Badge';
 import { calculateDualContainerSplit } from '../../services/portionCalcService';
 import { X, Plus, PackagePlus, Split, Layers } from 'lucide-react';
 
@@ -94,82 +91,83 @@ export const AddContainerModal: React.FC<AddContainerModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 animate-in fade-in duration-150">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/45 backdrop-blur-md animate-in fade-in duration-200">
       <div className="w-full max-w-md animate-in zoom-in-95 duration-200">
-        <ClayCard className="p-5 sm:p-6 relative border-[#E5E5E5]">
+        <div className="p-6 relative bg-white rounded-3xl border border-slate-200/90 shadow-[0_24px_50px_-12px_rgba(15,23,42,0.25),inset_0_2.5px_4px_#fff,inset_0_-4px_8px_rgba(15,23,42,0.04)]">
           <button
+            type="button"
             onClick={onClose}
-            className="absolute top-4 right-4 p-1.5 text-neutral-400 hover:text-neutral-700 rounded-full cursor-pointer"
+            className="w-8 h-8 rounded-xl bg-slate-50 text-neutral-400 hover:text-neutral-700 flex items-center justify-center absolute top-5 right-5 border border-slate-200/60 shadow-[inset_0_1px_1px_#fff] active:scale-95 transition-all cursor-pointer"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
 
-          <div className="flex items-center gap-2.5">
-            <div className="p-2.5 bg-indigo-50 text-indigo-600 rounded-xl">
-              <PackagePlus className="w-5 h-5" />
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100 shadow-[inset_0_1.5px_2px_#fff] shrink-0">
+              <PackagePlus className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold text-[#111111]">
+              <div className="flex items-center gap-2 flex-wrap">
+                <h2 className="text-base sm:text-lg font-black text-[#111111] tracking-tight">
                   {containerCount === 2
-                    ? `Tambah 2 Wadah Sekaligus (${nextContainerNumber} & ${nextContainerNumber + 1})`
+                    ? `Tambah 2 Wadah (${nextContainerNumber} & ${nextContainerNumber + 1})`
                     : `Tambah Wadah ${nextContainerNumber}`}
                 </h2>
-                <Badge variant="primary" size="sm">
+                <span className="px-2 py-0.5 rounded-full text-[11px] font-black bg-indigo-50 text-indigo-700 border border-indigo-200/80 shadow-[inset_0_1px_1.5px_#fff]">
                   {menu.name}
-                </Badge>
+                </span>
               </div>
-              <p className="text-xs text-[#666666]">
-                Target: <strong>{menu.target_portions} porsi</strong> | Kumulatif sebelumnya: <strong>{lastCumulative} porsi</strong>
+              <p className="text-xs text-[#666666] font-medium mt-0.5">
+                Target: <strong>{menu.target_portions} porsi</strong> | Kumulatif sblm: <strong>{lastCumulative} porsi</strong>
               </p>
             </div>
           </div>
 
           {/* Option for 1 Container vs 2 Containers (Special for Makanan Pokok / Nasi) */}
           {isStapleRice && (
-            <div className="mt-4 p-3 bg-amber-50/60 border border-amber-200 rounded-2xl space-y-2">
-              <div className="flex items-center justify-between text-xs font-bold text-amber-900">
+            <div className="mt-4 p-3.5 bg-[#EDEFF5] border border-slate-200/90 rounded-2xl shadow-[inset_0_2px_4px_rgba(15,23,42,0.06),inset_0_-1px_1px_#fff] space-y-2.5">
+              <div className="flex items-center justify-between text-xs font-black text-slate-800">
                 <span className="flex items-center gap-1.5">
-                  <Split className="w-3.5 h-3.5 text-amber-600" />
-                  Mode Pengisian Nasi / Makanan Pokok:
+                  <Split className="w-3.5 h-3.5 text-indigo-600 stroke-[2.5]" />
+                  Mode Pemorsian Nasi:
                 </span>
                 {containerCount === 2 && (
-                  <span className="text-[10px] px-2 py-0.5 bg-amber-200/80 text-amber-950 font-bold rounded-full">
+                  <span className="text-[10px] px-2 py-0.5 bg-indigo-100 text-indigo-900 font-black rounded-full border border-indigo-200/80 shadow-[inset_0_1px_1px_#fff]">
                     Hasil Dibagi 2
                   </span>
                 )}
               </div>
 
               {/* Segmented Buttons */}
-              <div className="flex items-center gap-1.5 p-1 bg-white rounded-xl border border-amber-200 shadow-2xs">
+              <div className="flex items-center gap-1.5 p-1 bg-white rounded-xl border border-slate-200/80 shadow-[0_2px_6px_rgba(0,0,0,0.04),inset_0_1px_1.5px_#fff]">
                 <button
                   type="button"
                   onClick={() => handleToggleContainerCount(1)}
-                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1 ${
+                  className={`flex-1 py-2 text-xs font-black rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                     containerCount === 1
-                      ? 'bg-amber-500 text-white shadow-xs'
-                      : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100'
+                      ? 'bg-slate-800 text-white shadow-[0_2px_6px_rgba(15,23,42,0.3),inset_0_1px_1.5px_rgba(255,255,255,0.2)]'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                   }`}
                 >
-                  <Layers className="w-3 h-3" />
+                  <Layers className="w-3.5 h-3.5" />
                   1 Wadah
                 </button>
                 <button
                   type="button"
                   onClick={() => handleToggleContainerCount(2)}
-                  className={`flex-1 py-1.5 text-xs font-black rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1 ${
+                  className={`flex-1 py-2 text-xs font-black rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                     containerCount === 2
-                      ? 'bg-indigo-600 text-white shadow-xs ring-2 ring-indigo-400/30'
-                      : 'text-neutral-600 hover:text-indigo-700 hover:bg-indigo-50/50'
+                      ? 'bg-indigo-600 text-white shadow-[0_4px_10px_-1px_rgba(99,102,241,0.4),inset_0_1.5px_2px_rgba(255,255,255,0.35)]'
+                      : 'text-slate-600 hover:text-indigo-700 hover:bg-indigo-50/50'
                   }`}
                 >
-                  <Split className="w-3 h-3" />
-                  2 Wadah (Dibagi 2)
+                  <Split className="w-3.5 h-3.5 stroke-[2.5]" />
+                  2 Wadah (Bagi 2)
                 </button>
               </div>
 
               {containerCount === 2 && (
-                <p className="text-[11px] text-amber-900/90 leading-tight">
+                <p className="text-[11px] text-indigo-950/80 font-medium leading-tight">
                   Angka porsi yang dicapai akan <strong>otomatis dibagi dua rata</strong> ke Wadah {nextContainerNumber} dan Wadah {nextContainerNumber + 1}.
                 </p>
               )}
@@ -204,41 +202,41 @@ export const AddContainerModal: React.FC<AddContainerModalProps> = ({
             {/* Live Calculation Preview Box */}
             {cumulative && !isNaN(numCumulative) && numCumulative >= lastCumulative && (
               containerCount === 2 ? (
-                /* Dual Container Split Preview */
-                <div className="p-3.5 bg-indigo-50/50 border border-indigo-200 rounded-2xl space-y-2.5">
+                /* Dual Container Split Preview - Full Clay */
+                <div className="p-3.5 bg-[#EDEFF5] border border-slate-200/90 rounded-2xl shadow-[inset_0_2px_4px_rgba(15,23,42,0.06),inset_0_-1px_1px_#fff] space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-indigo-900 uppercase tracking-wider flex items-center gap-1">
-                      <Split className="w-3.5 h-3.5 text-indigo-600" />
+                    <span className="text-xs font-black text-indigo-950 uppercase tracking-wider flex items-center gap-1.5">
+                      <Split className="w-3.5 h-3.5 text-indigo-600 stroke-[2.5]" />
                       Hasil Pembagian 2 Wadah:
                     </span>
-                    <span className="text-xs font-black text-indigo-700">
+                    <span className="text-xs font-black text-indigo-700 tabular-nums">
                       +{totalIncrement} porsi total
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-2.5">
                     {/* Container 1 Preview */}
-                    <div className="p-2.5 bg-white rounded-xl border border-indigo-100 shadow-2xs">
-                      <div className="text-[11px] font-bold text-neutral-600">
+                    <div className="p-3 bg-white rounded-2xl border border-slate-200/80 shadow-[0_4px_12px_-2px_rgba(15,23,42,0.06),inset_0_1.5px_2px_#fff]">
+                      <div className="text-[11px] font-black text-slate-700">
                         Wadah {nextContainerNumber} (1/2)
                       </div>
-                      <div className="text-lg font-black text-indigo-700 mt-0.5 tabular-nums">
-                        +{dualSplit.container1.used_portions} <span className="text-[10px] font-semibold text-neutral-500">porsi</span>
+                      <div className="text-lg font-black text-indigo-600 mt-0.5 tabular-nums">
+                        +{dualSplit.container1.used_portions} <span className="text-[10px] font-bold text-neutral-500">porsi</span>
                       </div>
-                      <div className="text-[10px] text-neutral-500 mt-0.5">
+                      <div className="text-[10px] text-neutral-500 font-medium mt-0.5">
                         Kumulatif: {dualSplit.container1.cumulative_portions}
                       </div>
                     </div>
 
                     {/* Container 2 Preview */}
-                    <div className="p-2.5 bg-white rounded-xl border border-indigo-100 shadow-2xs">
-                      <div className="text-[11px] font-bold text-neutral-600">
+                    <div className="p-3 bg-white rounded-2xl border border-slate-200/80 shadow-[0_4px_12px_-2px_rgba(15,23,42,0.06),inset_0_1.5px_2px_#fff]">
+                      <div className="text-[11px] font-black text-slate-700">
                         Wadah {nextContainerNumber + 1} (2/2)
                       </div>
-                      <div className="text-lg font-black text-indigo-700 mt-0.5">
-                        +{dualSplit.container2.used_portions} <span className="text-[10px] font-semibold text-neutral-500">porsi</span>
+                      <div className="text-lg font-black text-indigo-600 mt-0.5 tabular-nums">
+                        +{dualSplit.container2.used_portions} <span className="text-[10px] font-bold text-neutral-500">porsi</span>
                       </div>
-                      <div className="text-[10px] text-neutral-500 mt-0.5">
+                      <div className="text-[10px] text-neutral-500 font-medium mt-0.5">
                         Kumulatif: {dualSplit.container2.cumulative_portions}
                       </div>
                     </div>
@@ -246,20 +244,20 @@ export const AddContainerModal: React.FC<AddContainerModalProps> = ({
                 </div>
               ) : (
                 /* Single Container Preview */
-                <div className="p-3.5 bg-indigo-50/70 border border-indigo-100 rounded-2xl flex items-center justify-between">
+                <div className="p-3.5 bg-[#EDEFF5] border border-slate-200/90 rounded-2xl shadow-[inset_0_2px_4px_rgba(15,23,42,0.06),inset_0_-1px_1px_#fff] flex items-center justify-between">
                   <div>
-                    <div className="text-xs font-semibold text-indigo-800">
+                    <div className="text-xs font-black text-slate-800">
                       Pemakaian Wadah {nextContainerNumber}:
                     </div>
-                    <div className="text-xs text-indigo-600 mt-0.5">
+                    <div className="text-xs text-slate-600 font-medium mt-0.5">
                       {lastCumulative} → {numCumulative}
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-xl font-black text-indigo-600">
+                    <div className="text-xl font-black text-indigo-600 tabular-nums">
                       +{totalIncrement}
                     </div>
-                    <div className="text-[11px] font-semibold text-indigo-700">porsi terisi</div>
+                    <div className="text-[11px] font-black text-indigo-700">porsi terisi</div>
                   </div>
                 </div>
               )
@@ -273,26 +271,31 @@ export const AddContainerModal: React.FC<AddContainerModalProps> = ({
             />
 
             {error && (
-              <div className="p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl font-medium">
+              <div className="p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-2xl font-bold shadow-[inset_0_1px_1px_#fff]">
                 {error}
               </div>
             )}
 
             <div className="pt-2 flex items-center justify-end gap-2.5">
-              <ClayButton type="button" variant="secondary" onClick={onClose} disabled={isSubmitting}>
-                Batal
-              </ClayButton>
-              <ClayButton
-                type="submit"
-                variant="primary"
-                isLoading={isSubmitting}
-                leftIcon={<Plus className="w-4 h-4" />}
+              <button
+                type="button"
+                onClick={onClose}
+                disabled={isSubmitting}
+                className="px-4 py-2.5 bg-white hover:bg-slate-50 text-slate-700 rounded-2xl border border-slate-200/90 font-bold text-xs shadow-[0_4px_12px_-2px_rgba(15,23,42,0.06),inset_0_1.5px_2px_#fff,inset_0_-2px_3px_rgba(15,23,42,0.02)] active:scale-95 transition-all cursor-pointer"
               >
-                {containerCount === 2 ? 'Simpan 2 Wadah Sekaligus' : 'Simpan Wadah'}
-              </ClayButton>
+                Batal
+              </button>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-black text-xs flex items-center gap-1.5 shadow-[0_8px_20px_-2px_rgba(99,102,241,0.45),inset_0_2px_3px_rgba(255,255,255,0.35),inset_0_-2.5px_3.5px_rgba(0,0,0,0.18)] active:scale-95 transition-all cursor-pointer"
+              >
+                <Plus className="w-4 h-4 stroke-[2.5]" />
+                <span>{containerCount === 2 ? 'Simpan 2 Wadah Sekaligus' : 'Simpan Wadah'}</span>
+              </button>
             </div>
           </form>
-        </ClayCard>
+        </div>
       </div>
     </div>
   );
